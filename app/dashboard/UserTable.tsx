@@ -7,10 +7,11 @@ interface UserTableProps {
   users: (User | Client)[];
   loading?: boolean;
   onRowClick?: (user: User | Client) => void;
+  emptyMessage?: string; 
 }
 
 
-export default function UserTable({ users, loading = false, onRowClick }: UserTableProps) {
+export default function UserTable({ users, loading = false, onRowClick, emptyMessage }: UserTableProps) {
 
   const formatDate = (dateString?: string | Date | null) => {
     if (!dateString) return "-";
@@ -22,6 +23,8 @@ export default function UserTable({ users, loading = false, onRowClick }: UserTa
     const minutes = String(date.getMinutes()).padStart(2, "0");
     return `${day}/${month}/${year} às ${hours}:${minutes}h`;
   };
+
+  const totalColumns = 5;
 
   const formatAddress = (addresses: Address[] | undefined) => {
     if (!addresses || addresses.length === 0) return "-";
@@ -46,6 +49,7 @@ export default function UserTable({ users, loading = false, onRowClick }: UserTa
     );
   }
 
+
   const isClientList = (users[0] as Client).consultantId !== undefined;
 
   return (
@@ -66,85 +70,68 @@ export default function UserTable({ users, loading = false, onRowClick }: UserTa
           </tr>
         </thead>
 
-        <tbody className="text-gray-200">
-          {users.map((u) => (
-            <tr
-              key={u.id}
-              className="border-b border-gray-500 hover:bg-[#272b2e] cursor-pointer transition-colors"
-              onClick={() => onRowClick && onRowClick(u)}
-            >
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[220px] overflow-hidden whitespace-nowrap">
-                  {u.name || "-"}
-                </div>
-              </td>
+<tbody className="text-gray-200">
+  {loading && (
+    <tr>
+      <td colSpan={8} className="text-center py-8 border-y border-[#222729] text-gray-400">
+        Carregando...
+      </td>
+    </tr>
+  )}
 
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[260px] overflow-hidden whitespace-nowrap">
-                  {"email" in u ? u.email || "-" : "-"}
-                </div>
-              </td>
+  {!loading && users.length === 0 && (
+    <tr className="min-h-[100px]"> {/* garante altura mínima */}
+      <td colSpan={8} className="text-center py-8 border-y border-[#222729] text-gray-400">
+        {emptyMessage || "Nenhum registro encontrado"}
+      </td>
+    </tr>
+  )}
 
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[140px] overflow-hidden whitespace-nowrap">
-                  {"cpf" in u ? u.cpf || "-" : "-"}
-                </div>
-              </td>
+  {!loading && users.length > 0 &&
+    users.map((u) => (
+      <tr
+        key={u.id}
+        className="border-b border-gray-500 hover:bg-[#272b2e] cursor-pointer transition-colors"
+        onClick={() => onRowClick && onRowClick(u)}
+      >
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[220px] overflow-hidden whitespace-nowrap">{u.name || "-"}</div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[260px] overflow-hidden whitespace-nowrap">{"email" in u ? u.email || "-" : "-"}</div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[140px] overflow-hidden whitespace-nowrap">{"cpf" in u ? u.cpf || "-" : "-"}</div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[140px] overflow-hidden whitespace-nowrap">{"phoneNumber" in u ? u.phoneNumber || "-" : "-"}</div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[300px] overflow-hidden whitespace-nowrap">{"addresses" in u ? formatAddress(u.addresses) : "-"}</div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[160px] overflow-hidden whitespace-nowrap">
+            {"consultant" in u && (u as any).consultant?.name
+              ? (u as any).consultant.name
+              : ("consultantId" in u ? `#${(u as any).consultantId}` : "-")}
+          </div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[180px] overflow-hidden whitespace-nowrap">{formatDate(u.createdAt)}</div>
+        </td>
+        <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
+          <div className="truncate w-full max-w-[180px] overflow-hidden whitespace-nowrap">{formatDate(u.updatedAt)}</div>
+        </td>
+      </tr>
+    ))
+  }
+</tbody>
 
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[140px] overflow-hidden whitespace-nowrap">
-                  {"phoneNumber" in u ? u.phoneNumber || "-" : "-"}
-                </div>
-              </td>
-
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[300px] overflow-hidden whitespace-nowrap">
-                  {"addresses" in u ? formatAddress(u.addresses) : "-"}
-                </div>
-              </td>
-
-              {isClientList && (
-                <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                  <div className="truncate w-full max-w-[160px] overflow-hidden whitespace-nowrap">
-                    {"consultant" in u && (u as any).consultant?.name
-                      ? (u as any).consultant.name
-                      : (u as Client).consultantId
-                        ? `#${(u as Client).consultantId}`
-                        : "-"}
-                  </div>
-                </td>
-              )}
-
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[180px] overflow-hidden whitespace-nowrap">
-                  {formatDate(u.createdAt)}
-                </div>
-              </td>
-
-              <td className="py-8 pl-4 pr-8 border-y border-[#222729]">
-                <div className="truncate w-full max-w-[180px] overflow-hidden whitespace-nowrap">
-                  {formatDate(u.updatedAt)}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
       </table>
 
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

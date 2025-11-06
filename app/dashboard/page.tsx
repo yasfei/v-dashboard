@@ -101,12 +101,12 @@ export default function DashboardPage() {
     return d;
   };
 
- 
+
   const handleDateChange = (field: "start" | "end", value: string) => {
     const newPeriod = {
       ...selectedPeriod,
       [field]: value ? new Date(value) : null,
-      mode: "intervalo" as const, 
+      mode: "intervalo" as const,
     };
     setSelectedPeriod(newPeriod);
 
@@ -189,7 +189,7 @@ export default function DashboardPage() {
   ]);
 
   const handleUserCreated = (newUser: User | Client | null) => {
-    if (!newUser) return; 
+    if (!newUser) return;
 
     if ("type" in newUser && newUser.type === "CLIENT") {
       setClients((prev) => [...prev, newUser]);
@@ -398,14 +398,17 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <UserTable
-          users={paginatedUsers}
-          loading={loading}
-          onRowClick={(u) => {
-            setSelectedUser(u);
-            setShowModal(true);
-          }}
-        />
+        <div className="w-full bg-[#131516] border border-[#222729] min-h-[300px]">
+  <UserTable
+    users={paginatedUsers}
+    loading={loading}
+    onRowClick={(u) => {
+      setSelectedUser(u);
+      setShowModal(true);
+    }}
+    emptyMessage="Nenhum cliente encontrado"
+  />
+</div>
 
         {/* Controles de Paginação */}
         {!loading && totalPages > 1 && (
@@ -439,7 +442,7 @@ export default function DashboardPage() {
         user={selectedUser}
         onUserCreated={handleUserCreated}
         onUserDeleted={handleUserDeleted}
-        fetchUsers={fetchUsers} 
+        fetchUsers={fetchUsers}
       />
 
       {/* Toast */}
