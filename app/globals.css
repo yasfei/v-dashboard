@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+@tailwind utilities;
+
+html, body {
+  font-family: 'Red Hat Display', sans-serif !important;
+}
+
+@layer base {
+  html, body {
+    @apply bg-[#131313] text-white min-h-screen font-sans;
+  }
+}
+
+@layer components {
+  button {
+    @apply bg-[#1B3F1B] text-white px-4 py-2 rounded-lg;
+  }
+
+  input, select {
+    @apply bg-[#131516] text-white px-2 py-2 rounded-md border border-[#2a2a2a];
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}

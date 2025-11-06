@@ -1,0 +1,184 @@
+/* UserModal.css */
+
+/* Overlay do modal */
+.user-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Container do modal (lado direito) */
+.user-modal-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* width: auto; */
+  height: 100%;
+  background-color: #131313;
+  border-left: 1px solid #222729;
+  border-top-left-radius: 24px;
+  overflow-y: scroll;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header com botões */
+.user-modal-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #222729;
+  padding: 12px;
+  width: 100%;
+}
+
+/* Botões */
+.user-modal-btn-create {
+  padding: 8px 48px;
+  border-radius: 9999px;
+  font-weight: 500;
+  color: #00f700;
+  cursor: pointer;
+}
+.user-modal-btn-create:hover {
+  background-color: #002200;
+}
+
+.user-modal-btn-delete {
+  padding: 8px 48px;
+  border-radius: 9999px;
+  font-weight: 500;
+  color: #878D96;
+  font-color: #878D96;
+  
+  background: #F2F4F80A 4%;
+  cursor: pointer;
+}
+.user-modal-btn-delete:hover {
+  background-color: #222729;
+}
+
+/* Form geral */
+.user-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+  color: #878d96;
+  padding: 0px 100px 100px 100px; 
+}
+
+/* Inputs e selects */
+.user-modal-input,
+.user-modal-select {
+  width: 100%;
+  border-radius: 6px;
+  min-height: 40px; /* aumenta a altura do campo */
+  border: 1px solid #2a2a2a;
+  background-color: #131516;
+  color: #878d96;
+  /* font-family: Red Hat Display; */
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 135%;
+  letter-spacing: 2%;
+}
+
+.input-wrapper {
+  padding: 4px 30px; /* afeta apenas o wrapper */
+}
+
+
+/* Abas */
+.user-modal-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding-bottom: 10px;
+  padding-left: 9px;
+  border-bottom-width: 3px; 
+  border-bottom-color: #222729; 
+  border-bottom-style: solid; 
+}
+
+.user-modal-tab {
+  padding: 4px 12px 12px 10px;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #878d96;
+  cursor: pointer;
+}
+
+.user-modal-tab.active {
+  border-bottom: 2px solid #4d5358;
+  color: #ffffff;
+}
+
+/* Conteúdo das abas */
+.user-modal-tab-content {
+  margin-top: 0px;
+}
+
+/* Aba desabilitada */
+.user-modal-tab.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Scroll interno */
+.user-modal-container::-webkit-scrollbar {
+  width: 6px;
+}
+.user-modal-container::-webkit-scrollbar-thumb {
+  background: #4d5358;
+  border-radius: 3px;
+}
+
+/* Label */
+.label-modal {
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 8px; 
+  display: block;
+}
+
+.tab-button {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 5px;
+    background: transparent;
+    color: #878D96;
+    border: none;
+    cursor: pointer;
+}
+
+/* Aba ativa */
+.tab-button.active {
+  background: #4D5358; 
+  color: white;
+}
+
+.tab-button .tab-indicator {
+  position: absolute;
+  bottom: -13px;       
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 110%;
+  background: #4D5358;
+}
+
+/* Aba não selecionada tem linha transparente */
+.tab-button:not(.active) .tab-indicator {
+  background: transparent; /* Cor mais clara da linha não selecionada */
+}

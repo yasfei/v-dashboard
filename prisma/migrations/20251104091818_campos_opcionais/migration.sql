@@ -1,0 +1,11 @@
+-- AlterTable
+ALTER TABLE "Address" ALTER COLUMN "zipCode" DROP NOT NULL,
+ALTER COLUMN "state" DROP NOT NULL,
+ALTER COLUMN "street" DROP NOT NULL,
+ALTER COLUMN "additional" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Client" ALTER COLUMN "age" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "age" DROP NOT NULL;

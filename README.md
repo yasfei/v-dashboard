@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Projeto V - Dashboard e Gestão de Usuários
 
-## Getting Started
+## Descrição
 
-First, run the development server:
+Bem-vindo ao projeto **V**!
+Este teste foi desenvolvido para demonstrar habilidades em **Next.js**, **Tailwind CSS** e **Prisma ORM**, construindo dashboards e sistemas de gestão de usuários com boas práticas modernas do Next.js, como **Server Components**, **Suspense**, **Loading Skeletons**, **Cache** e **Server Actions**.
+
+O objetivo é criar interfaces funcionais para visualização de clientes e gerenciamento de usuários, de forma responsiva e interativa.
+
+---
+
+## Funcionalidades
+
+### Dashboard
+
+* Exibição de tabelas listando clientes de um consultor específico.
+* Filtros de clientes por consultor.
+* Consulta por datas de cadastro.
+* Paginação dos resultados para facilitar a navegação.
+* Métricas e contadores relacionados aos clientes.
+* Exclusão de clientes diretamente da dashboard, com confirmação.
+
+### Gestão de Usuários
+
+* Criação e atualização de usuários (upsert) via formulários.
+* Validação de campos obrigatórios (nome, email, tipo de usuário).
+* Relacionamento entre **consultores** e **clientes**.
+* Modal deslizante para edição de usuários.
+* Multi-select para associar clientes a consultores.
+* Confirmação de ações antes de atualizar ou deletar usuários.
+
+---
+
+## Tecnologias Utilizadas
+
+* **Next.js 15/16** – Server Components, Suspense, Server Actions.
+* **Tailwind CSS** – estilização responsiva e moderna.
+* **Prisma ORM** – modelagem e manipulação do banco de dados.
+* **Framer Motion** – animações para modais e transições.
+* **TypeScript** – tipagem estática e segurança de dados.
+
+---
+
+## Estrutura do Projeto
+
+```
+/app                 # Next.js App Router
+  /components        # Componentes reutilizáveis (Select, Modal, MultiSelect, etc.)
+  /styles            # CSS e Tailwind custom
+  /pages/api         # Rotas API para usuários e clientes
+/src/types/models.ts  # Tipagens de User e Client
+```
+
+---
+
+## Setup
+
+### 1. Clonar o projeto
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd nome-do-projeto
+```
+
+### 2. Instalar dependências
+
+```bash
+npm install
+```
+
+### 3. Configurar variáveis de ambiente
+
+Crie um arquivo `.env` com as variáveis necessárias:
+
+```
+DATABASE_URL=<URL_DO_BANCO_DE_DADOS>
+NEXT_PUBLIC_API_URL=<URL_DA_API>
+```
+
+### 4. Rodar o projeto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O site estará disponível em `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
+* **Front-end:** recomendado Vercel.
+* **Banco de dados:** recomendado Supabase (instância gratuita).
 
-To learn more about Next.js, take a look at the following resources:
+Certifique-se de configurar as variáveis de ambiente antes de publicar.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Observações
 
-## Deploy on Vercel
+* A Dashboard exibe todos os clientes quando nenhum filtro de consultor é aplicado.
+* As animações dos modais foram implementadas com **Framer Motion**, proporcionando experiência fluida. (WIP)
+* Todos os formulários possuem validação e confirmação antes de ações críticas (atualização ou exclusão). (WIP)
+* Funcionalidades extras:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  * Filtro por datas de cadastro de clientes.
+  * Exclusão de clientes diretamente da Dashboard.
+  * Paginação de resultados.
+  * Confirmação de formulário antes de qualquer alteração.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
