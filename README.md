@@ -77,7 +77,7 @@ O site estará disponível em `http://localhost:3000`.
 
 ## ☁️ Deploy
 
-* **Front-end:** Vercel (https://v-dashboard-p7wyh3524-yasmins-projects-78977879.vercel.app)
+* **Front-end:** Vercel (https://v-dashboard-y-git-main-yasmins-projects-78977879.vercel.app?_vercel_share=eb7VLPZ5qhKMvfwcp8lHkyj9f7kXYRmf)
 * **Banco de dados:** Supabase
 
 💡 Certifique-se de configurar as variáveis de ambiente antes de publicar.
