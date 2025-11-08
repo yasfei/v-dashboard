@@ -1,17 +1,16 @@
-# Projeto V - Dashboard e Gestão de Usuários
+# ⚡ Projeto V - Dashboard e Gestão de Usuários
 
-## Descrição
+## 🧭 Descrição
 
-Bem-vindo ao projeto **V**!
-Este teste foi desenvolvido para demonstrar habilidades em **Next.js**, **Tailwind CSS** e **Prisma ORM**, construindo dashboards e sistemas de gestão de usuários com boas práticas modernas do Next.js, como **Server Components**, **Suspense**, **Loading Skeletons**, **Cache** e **Server Actions**.
+Este projeto foi desenvolvido para demonstrar habilidades em **Next.js**, **Tailwind CSS** e **Prisma ORM**, construindo dashboards e sistemas de gestão de usuários com boas práticas modernas do Next.js, como **Server Components**, **Suspense**, **Loading Skeletons**, **Cache** e **Server Actions**.
 
 O objetivo é criar interfaces funcionais para visualização de clientes e gerenciamento de usuários, de forma responsiva e interativa.
 
 ---
 
-## Funcionalidades
+## 📊 Funcionalidades
 
-### Dashboard
+### 🖥️ Dashboard
 
 * Exibição de tabelas listando clientes de um consultor específico.
 * Filtros de clientes por consultor.
@@ -20,7 +19,7 @@ O objetivo é criar interfaces funcionais para visualização de clientes e gere
 * Métricas e contadores relacionados aos clientes.
 * Exclusão de clientes diretamente da dashboard, com confirmação.
 
-### Gestão de Usuários
+### 👥 Gestão de Usuários
 
 * Criação e atualização de usuários (upsert) via formulários.
 * Validação de campos obrigatórios (nome, email, tipo de usuário).
@@ -31,7 +30,7 @@ O objetivo é criar interfaces funcionais para visualização de clientes e gere
 
 ---
 
-## Tecnologias Utilizadas
+## 🧩 Tecnologias Utilizadas
 
 * **Next.js 15/16** – Server Components, Suspense, Server Actions.
 * **Tailwind CSS** – estilização responsiva e moderna.
@@ -41,19 +40,8 @@ O objetivo é criar interfaces funcionais para visualização de clientes e gere
 
 ---
 
-## Estrutura do Projeto
 
-```
-/app                 # Next.js App Router
-  /components        # Componentes reutilizáveis (Select, Modal, MultiSelect, etc.)
-  /styles            # CSS e Tailwind custom
-  /pages/api         # Rotas API para usuários e clientes
-/src/types/models.ts  # Tipagens de User e Client
-```
-
----
-
-## Setup
+## ⚙️ Setup
 
 ### 1. Clonar o projeto
 
@@ -87,25 +75,25 @@ O site estará disponível em `http://localhost:3000`.
 
 ---
 
-## Deploy
+## ☁️ Deploy
 
-* **Front-end:** recomendado Vercel.
-* **Banco de dados:** recomendado Supabase (instância gratuita).
+* **Front-end:** Vercel (https://v-dashboard-p7wyh3524-yasmins-projects-78977879.vercel.app)
+* **Banco de dados:** Supabase
 
-Certifique-se de configurar as variáveis de ambiente antes de publicar.
+💡 Certifique-se de configurar as variáveis de ambiente antes de publicar.
 
 ---
 
-## Observações
+## ✨ Observações
 
 * A Dashboard exibe todos os clientes quando nenhum filtro de consultor é aplicado.
 * As animações dos modais foram implementadas com **Framer Motion**, proporcionando experiência fluida. (WIP)
 * Todos os formulários possuem validação e confirmação antes de ações críticas (atualização ou exclusão). (WIP)
 * Funcionalidades extras:
 
-  * Filtro por datas de cadastro de clientes.
-  * Exclusão de clientes diretamente da Dashboard.
-  * Paginação de resultados.
-  * Confirmação de formulário antes de qualquer alteração.
+  * 🔎 Filtro por datas de cadastro de clientes.
+  * 🗑️ Exclusão de clientes diretamente da Dashboard.
+  * 📄 Paginação de resultados.
+  * ✅ Confirmação de formulário antes de qualquer alteração.
+  * 🎞️ Animações de abertura e fechamento de modais com Framer Motion
 
----
