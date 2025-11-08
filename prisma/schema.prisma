@@ -1,19 +1,14 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
-  envFiles        = ["../.env", "./.env"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
+        
 model User {
   id          Int       @id @default(autoincrement())
   name        String?
@@ -21,11 +16,11 @@ model User {
   phoneNumber String?
   cpf         String    @unique
   age         Int?
-  addresses   Address[]
   role        Role?
-  clients     Client[]  @relation("ConsultorClientes")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  addresses   Address[]
+  clients     Client[]  @relation("ConsultorClientes")
 }
 
 model Client {
@@ -35,11 +30,11 @@ model Client {
   phoneNumber  String?
   cpf          String    @unique
   age          Int?
-  addresses    Address[]
-  consultant   User?     @relation("ConsultorClientes", fields: [consultantId], references: [id])
   consultantId Int?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+  addresses    Address[]
+  consultant   User?     @relation("ConsultorClientes", fields: [consultantId], references: [id])
 }
 
 model Address {
@@ -49,9 +44,9 @@ model Address {
   street     String?
   additional String?
   userId     Int?
-  user       User?   @relation(fields: [userId], references: [id])
   clientId   Int?
   client     Client? @relation(fields: [clientId], references: [id])
+  user       User?   @relation(fields: [userId], references: [id])
 }
 
 enum Role {
